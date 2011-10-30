@@ -19,6 +19,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7524181E145DDFB20094DBCC /* rsync-3.0.8 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "rsync-3.0.8"; sourceTree = "<group>"; };
 		75D49B1B145D2022005A03F7 /* rsync_3.0.8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rsync_3.0.8; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,6 +37,7 @@
 		7548F87E145CF8F9005CFBBB = {
 			isa = PBXGroup;
 			children = (
+				7524181E145DDFB20094DBCC /* rsync-3.0.8 */,
 				7548F88A145CF8F9005CFBBB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -199,6 +201,7 @@
 				75D49B24145D2022005A03F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
