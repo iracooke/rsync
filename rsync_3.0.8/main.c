@@ -1,6 +1,6 @@
 //
 //  main.c
-//  rsync
+//  rsync_3.0.8
 //
 //  Created by Ira Cooke on 30/10/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
