@@ -6,32 +6,24 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		7548F88E145CF8F9005CFBBB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7548F88D145CF8F9005CFBBB /* main.c */; };
-		7548F890145CF8F9005CFBBB /* rsync.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7548F88F145CF8F9005CFBBB /* rsync.1 */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		7548F887145CF8F9005CFBBB /* CopyFiles */ = {
+		75D49B19145D2022005A03F7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				7548F890145CF8F9005CFBBB /* rsync.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7548F889145CF8F9005CFBBB /* rsync */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rsync; sourceTree = BUILT_PRODUCTS_DIR; };
-		7548F88D145CF8F9005CFBBB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		7548F88F145CF8F9005CFBBB /* rsync.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = rsync.1; sourceTree = "<group>"; };
+		75D49B1B145D2022005A03F7 /* rsync_3.0.8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rsync_3.0.8; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7548F886145CF8F9005CFBBB /* Frameworks */ = {
+		75D49B18145D2022005A03F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,7 +36,6 @@
 		7548F87E145CF8F9005CFBBB = {
 			isa = PBXGroup;
 			children = (
-				7548F88C145CF8F9005CFBBB /* rsync */,
 				7548F88A145CF8F9005CFBBB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,38 +43,30 @@
 		7548F88A145CF8F9005CFBBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7548F889145CF8F9005CFBBB /* rsync */,
+				75D49B1B145D2022005A03F7 /* rsync_3.0.8 */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		7548F88C145CF8F9005CFBBB /* rsync */ = {
-			isa = PBXGroup;
-			children = (
-				7548F88D145CF8F9005CFBBB /* main.c */,
-				7548F88F145CF8F9005CFBBB /* rsync.1 */,
-			);
-			path = rsync;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7548F888145CF8F9005CFBBB /* rsync */ = {
+		75D49B1A145D2022005A03F7 /* rsync_3.0.8 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7548F893145CF8F9005CFBBB /* Build configuration list for PBXNativeTarget "rsync" */;
+			buildConfigurationList = 75D49B22145D2022005A03F7 /* Build configuration list for PBXNativeTarget "rsync_3.0.8" */;
 			buildPhases = (
-				7548F885145CF8F9005CFBBB /* Sources */,
-				7548F886145CF8F9005CFBBB /* Frameworks */,
-				7548F887145CF8F9005CFBBB /* CopyFiles */,
+				75D49B17145D2022005A03F7 /* Sources */,
+				75D49B18145D2022005A03F7 /* Frameworks */,
+				75D49B19145D2022005A03F7 /* CopyFiles */,
+				75D49B25145D207F005A03F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = rsync;
-			productName = rsync;
-			productReference = 7548F889145CF8F9005CFBBB /* rsync */;
+			name = rsync_3.0.8;
+			productName = rsync_3.0.8;
+			productReference = 75D49B1B145D2022005A03F7 /* rsync_3.0.8 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -106,17 +89,32 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7548F888145CF8F9005CFBBB /* rsync */,
+				75D49B1A145D2022005A03F7 /* rsync_3.0.8 */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		75D49B25145D207F005A03F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -o errexit\nset -o nounset\n\ncd \"${PROJECT_DIR}/rsync-3.0.8\"\n\n./configure\n\nmake\n\n\nmkdir -p $BUILT_PRODUCTS_DIR\n\ncp rsync \"${BUILT_PRODUCTS_DIR}/rsync_3.0.8\"\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		7548F885145CF8F9005CFBBB /* Sources */ = {
+		75D49B17145D2022005A03F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7548F88E145CF8F9005CFBBB /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,14 +166,14 @@
 			};
 			name = Release;
 		};
-		7548F894145CF8F9005CFBBB /* Debug */ = {
+		75D49B23145D2022005A03F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		7548F895145CF8F9005CFBBB /* Release */ = {
+		75D49B24145D2022005A03F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -194,11 +192,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7548F893145CF8F9005CFBBB /* Build configuration list for PBXNativeTarget "rsync" */ = {
+		75D49B22145D2022005A03F7 /* Build configuration list for PBXNativeTarget "rsync_3.0.8" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7548F894145CF8F9005CFBBB /* Debug */,
-				7548F895145CF8F9005CFBBB /* Release */,
+				75D49B23145D2022005A03F7 /* Debug */,
+				75D49B24145D2022005A03F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
