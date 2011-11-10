@@ -108,7 +108,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nset -o nounset\n\ncd \"${PROJECT_DIR}/rsync-3.0.8\"\n\n./configure\n\nmake\n\n\nmkdir -p $BUILT_PRODUCTS_DIR\n\ncp rsync \"${BUILT_PRODUCTS_DIR}/rsync_3.0.8\"\n\n";
+			shellScript = "set -o errexit\nset -o nounset\n\n# Check to see if the built product is present. \n# We only want to rebuild after a clean.\n#\nif [ -f \"${BUILT_PRODUCTS_DIR}/rsync_3.0.8\" ] \nthen\n    exit\nfi\n\n\ncd \"${PROJECT_DIR}/rsync-3.0.8\"\n\n./configure\n\nmake\n\n\nmkdir -p $BUILT_PRODUCTS_DIR\n\ncp rsync \"${BUILT_PRODUCTS_DIR}/rsync_3.0.8\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
