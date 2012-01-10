@@ -59,8 +59,8 @@
 			buildPhases = (
 				75D49B17145D2022005A03F7 /* Sources */,
 				75D49B18145D2022005A03F7 /* Frameworks */,
-				75D49B19145D2022005A03F7 /* CopyFiles */,
 				75D49B25145D207F005A03F7 /* ShellScript */,
+				75D49B19145D2022005A03F7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -108,7 +108,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nset -o nounset\n\n# Check to see if the built product is present. \n# We only want to rebuild after a clean.\n#\nif [ -f \"${BUILT_PRODUCTS_DIR}/rsync_3.0.8\" ] \nthen\n    exit\nfi\n\n\ncd \"${PROJECT_DIR}/rsync-3.0.8\"\n\n./configure\n\nmake\n\n\nmkdir -p $BUILT_PRODUCTS_DIR\ncp rsync \"${BUILT_PRODUCTS_DIR}/rsync_3.0.8\"\n\n";
+			shellScript = "set -o errexit\nset -o nounset\n\n# Check to see if the built product is present. \n# We only want to rebuild after a clean.\n#\nif [ -f \"${BUILT_PRODUCTS_DIR}/rsync_3.0.8\" ] \nthen\n    exit\nfi\n\n\ncd \"${PROJECT_DIR}/rsync-3.0.8\"\n\n./configure\n\nmake\n\n# Using TARGET_BUILD_DIR here works when archiving whereas BUILT_PRODUCT_DIR doesn't\n#\nmkdir -p \"$TARGET_BUILD_DIR\"\ncp rsync \"${TARGET_BUILD_DIR}/rsync_3.0.8\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -143,9 +143,11 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -163,22 +165,28 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 		75D49B23145D2022005A03F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INSTALL_PATH = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		75D49B24145D2022005A03F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INSTALL_PATH = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
