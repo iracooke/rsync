@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXCopyFilesBuildPhase section */
+		753CB6AB14D20F010024916C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		75D49B19145D2022005A03F7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 8;
@@ -20,10 +29,19 @@
 
 /* Begin PBXFileReference section */
 		7524181E145DDFB20094DBCC /* rsync-3.0.8 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "rsync-3.0.8"; sourceTree = "<group>"; };
+		753CB6AF14D20F010024916C /* rsync_3.0.9 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rsync_3.0.9; sourceTree = BUILT_PRODUCTS_DIR; };
+		753CB6B214D20FB30024916C /* rsync-3.0.9 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "rsync-3.0.9"; sourceTree = "<group>"; };
 		75D49B1B145D2022005A03F7 /* rsync_3.0.8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rsync_3.0.8; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		753CB6A914D20F010024916C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75D49B18145D2022005A03F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,6 +55,7 @@
 		7548F87E145CF8F9005CFBBB = {
 			isa = PBXGroup;
 			children = (
+				753CB6B214D20FB30024916C /* rsync-3.0.9 */,
 				7524181E145DDFB20094DBCC /* rsync-3.0.8 */,
 				7548F88A145CF8F9005CFBBB /* Products */,
 			);
@@ -46,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				75D49B1B145D2022005A03F7 /* rsync_3.0.8 */,
+				753CB6AF14D20F010024916C /* rsync_3.0.9 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,6 +73,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		753CB6A714D20F010024916C /* rsync_3.0.9 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 753CB6AC14D20F010024916C /* Build configuration list for PBXNativeTarget "rsync_3.0.9" */;
+			buildPhases = (
+				753CB6A814D20F010024916C /* Sources */,
+				753CB6A914D20F010024916C /* Frameworks */,
+				753CB6AA14D20F010024916C /* ShellScript */,
+				753CB6AB14D20F010024916C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rsync_3.0.9;
+			productName = rsync_3.0.8;
+			productReference = 753CB6AF14D20F010024916C /* rsync_3.0.9 */;
+			productType = "com.apple.product-type.tool";
+		};
 		75D49B1A145D2022005A03F7 /* rsync_3.0.8 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75D49B22145D2022005A03F7 /* Build configuration list for PBXNativeTarget "rsync_3.0.8" */;
@@ -92,11 +130,25 @@
 			projectRoot = "";
 			targets = (
 				75D49B1A145D2022005A03F7 /* rsync_3.0.8 */,
+				753CB6A714D20F010024916C /* rsync_3.0.9 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		753CB6AA14D20F010024916C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -o errexit\nset -o nounset\n\n# Check to see if the built product is present. \n# We only want to rebuild after a clean.\n#\nif [ -f \"${BUILT_PRODUCTS_DIR}/rsync_3.0.9\" ] \nthen\n    exit\nfi\n\n\ncd \"${PROJECT_DIR}/rsync-3.0.9\"\n\n./configure CFLAGS='-arch x86_64 -arch i386 -mmacosx-version-min=10.6' LDFLAGS='-mmacosx-version-min=10.6'\n\nmake\n\n# Using TARGET_BUILD_DIR here works when archiving whereas BUILT_PRODUCT_DIR doesn't\n#\nmkdir -p \"$TARGET_BUILD_DIR\"\ncp rsync \"${TARGET_BUILD_DIR}/rsync_3.0.9\"\n";
+		};
 		75D49B25145D207F005A03F7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,6 +165,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		753CB6A814D20F010024916C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75D49B17145D2022005A03F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,6 +182,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		753CB6AD14D20F010024916C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				INSTALL_PATH = "";
+				PRODUCT_NAME = rsync_3.0.9;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		753CB6AE14D20F010024916C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				INSTALL_PATH = "";
+				PRODUCT_NAME = rsync_3.0.9;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		7548F891145CF8F9005CFBBB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -193,6 +272,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		753CB6AC14D20F010024916C /* Build configuration list for PBXNativeTarget "rsync_3.0.9" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				753CB6AD14D20F010024916C /* Debug */,
+				753CB6AE14D20F010024916C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7548F883145CF8F9005CFBBB /* Build configuration list for PBXProject "rsync" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
