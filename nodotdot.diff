@@ -1,0 +1,15 @@
+diff -Naur rsync-3.0.8_orig/receiver.c rsync-3.0.8_nodotdot/receiver.c
+--- rsync-3.0.8_orig/receiver.c	2011-04-05 17:12:03.000000000 +1000
++++ rsync-3.0.8_nodotdot/receiver.c	2011-04-05 17:20:40.000000000 +1000
+@@ -103,7 +103,10 @@
+ 		}
+ 	} else
+ 		f = fname;
+-	fnametmp[length++] = '.';
++		
++	if ( f[0]!='.'){
++		fnametmp[length++] = '.';
++	}
+ 
+ 	/* The maxname value is bufsize, and includes space for the '\0'.
+ 	 * NAME_MAX needs an extra -1 for the name's leading dot. */
