@@ -103,7 +103,10 @@ int get_tmpname(char *fnametmp, const char *fname)
 		}
 	} else
 		f = fname;
-	fnametmp[length++] = '.';
+		
+	if ( f[0]!='.'){
+		fnametmp[length++] = '.';
+	}
 
 	/* The maxname value is bufsize, and includes space for the '\0'.
 	 * NAME_MAX needs an extra -1 for the name's leading dot. */
