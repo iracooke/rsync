@@ -1,0 +1,47 @@
+Common subdirectories: rsync-3.1.1_clean/doc and rsync-3.1.1/doc
+diff rsync-3.1.1_clean/io.c rsync-3.1.1/io.c
+1175a1176
+> 	char octal_escape_buf[6];
+1201c1202
+< 		if (s < eob)
+---
+> 		if (s < eob){
+1202a1204,1234
+> 			int oelen = strlen(octal_escape_buf);
+> 			if (ch=='\\')
+> 			{
+> 				octal_escape_buf[0]='\\';
+> 				octal_escape_buf[1]='\0';
+> 			} else if (oelen==1 && ch=='#'){
+> 				octal_escape_buf[1]='#';
+> 				octal_escape_buf[2]='\0';
+> 			} else if (oelen>1 && isdigit(ch)){
+> 				octal_escape_buf[oelen]=ch;
+> 				octal_escape_buf[oelen+1]='\0';
+> 			} else {
+> 				octal_escape_buf[0]='\0';
+> 			}
+> 
+> 			if (strlen(octal_escape_buf)==5)
+> 			{
+> 				char digitString[2];
+> 				// replace last 5 chars in buf with char represented by octal_escape_buf
+> 				int oe_as_int = atoi(strncpy(digitString,&octal_escape_buf[2],1))*8*8;
+> 				oe_as_int += atoi(strncpy(digitString,&octal_escape_buf[3],1))*8;
+> 				oe_as_int += atoi(strncpy(digitString,&octal_escape_buf[4],1));
+> 				printf("%d",oe_as_int);
+> 				char encoded_char = (char)oe_as_int;
+> 				s = s-5; 
+> 				*s++ = encoded_char;
+> 
+> 				octal_escape_buf[0]='\0';
+> 			}
+> 
+> 		}
+Common subdirectories: rsync-3.1.1_clean/lib and rsync-3.1.1/lib
+Common subdirectories: rsync-3.1.1_clean/packaging and rsync-3.1.1/packaging
+Common subdirectories: rsync-3.1.1_clean/popt and rsync-3.1.1/popt
+Common subdirectories: rsync-3.1.1_clean/support and rsync-3.1.1/support
+Common subdirectories: rsync-3.1.1_clean/testhelp and rsync-3.1.1/testhelp
+Common subdirectories: rsync-3.1.1_clean/testsuite and rsync-3.1.1/testsuite
+Common subdirectories: rsync-3.1.1_clean/zlib and rsync-3.1.1/zlib
