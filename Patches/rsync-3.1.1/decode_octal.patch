@@ -1,0 +1,51 @@
+--- original/io.c	2015-10-21 05:53:21.000000000 +1100
++++ rsync-3.1.1/io.c	2015-10-21 05:58:10.000000000 +1100
+@@ -1173,6 +1173,7 @@
+ int read_line(int fd, char *buf, size_t bufsiz, int flags)
+ {
+ 	char ch, *s, *eob;
++	char octal_escape_buf[6];
+ 
+ #ifdef ICONV_OPTION
+ 	if (flags & RL_CONVERT && iconv_buf.size < bufsiz)
+@@ -1198,8 +1199,39 @@
+ 				continue;
+ 			break;
+ 		}
+-		if (s < eob)
++		if (s < eob){
+ 			*s++ = ch;
++			int oelen = strlen(octal_escape_buf);
++			if (ch=='\\')
++			{
++				octal_escape_buf[0]='\\';
++				octal_escape_buf[1]='\0';
++			} else if (oelen==1 && ch=='#'){
++				octal_escape_buf[1]='#';
++				octal_escape_buf[2]='\0';
++			} else if (oelen>1 && isdigit(ch)){
++				octal_escape_buf[oelen]=ch;
++				octal_escape_buf[oelen+1]='\0';
++			} else {
++				octal_escape_buf[0]='\0';
++			}
++
++			if (strlen(octal_escape_buf)==5)
++			{
++				char digitString[2];
++				// replace last 5 chars in buf with char represented by octal_escape_buf
++				int oe_as_int = atoi(strncpy(digitString,&octal_escape_buf[2],1))*8*8;
++				oe_as_int += atoi(strncpy(digitString,&octal_escape_buf[3],1))*8;
++				oe_as_int += atoi(strncpy(digitString,&octal_escape_buf[4],1));
++				printf("%d",oe_as_int);
++				char encoded_char = (char)oe_as_int;
++				s = s-5; 
++				*s++ = encoded_char;
++
++				octal_escape_buf[0]='\0';
++			}
++
++		}
+ 	}
+ 	*s = '\0';
+ 

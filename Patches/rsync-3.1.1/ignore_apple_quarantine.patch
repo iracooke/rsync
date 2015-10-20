@@ -1,0 +1,50 @@
+--- original/xattrs.c	2015-10-21 05:53:21.000000000 +1100
++++ rsync-3.1.1/xattrs.c	2015-10-21 06:05:40.000000000 +1100
+@@ -240,6 +240,11 @@
+ 			continue;
+ #endif
+ 
++#ifdef HAVE_OSX_XATTRS
++		if (strcmp(name,"com.apple.quarantine")==0)
++			continue;
++#endif		
++
+ 		/* No rsync.%FOO attributes are copied w/o 2 -X options. */
+ 		if (name_len > RPRE_LEN && name[RPRE_LEN] == '%'
+ 		 && HAS_PREFIX(name, RSYNC_PREFIX)) {
+@@ -343,6 +348,12 @@
+ 			continue;
+ #endif
+ 
++#ifdef HAVE_OSX_XATTRS
++		if (strcmp(name,"com.apple.quarantine")==0)
++			continue;
++#endif		
++
++
+ 		datum_len = 0;
+ 		if (!(ptr = get_xattr_data(source, name, &datum_len, 0)))
+ 			return -1;
+@@ -797,7 +808,7 @@
+ 	size_t name_len;
+ 	int ret = 0;
+ 
+-	/* This puts the current name list into the "namebuf" buffer. */
++	/* This puts the current name list into the "ç" buffer. */
+ 	if ((list_len = get_xattr_names(fname)) < 0)
+ 		return -1;
+ 
+@@ -873,6 +884,13 @@
+ 			      : HAS_PREFIX(name, SYSTEM_PREFIX))
+ 			continue;
+ #endif
++
++#ifdef HAVE_OSX_XATTRS
++		if (strcmp(name,"com.apple.quarantine")==0)
++			continue;
++#endif		
++
++		
+ 		if (am_root < 0 && name_len > RPRE_LEN
+ 		 && name[RPRE_LEN] == '%' && strcmp(name, XSTAT_ATTR) == 0)
+ 			continue;
